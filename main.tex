@@ -1,0 +1,260 @@
+\documentclass[
+	% -- opções da classe memória --
+	12pt,				% tamanho da fonte
+	%openright,			% capítulos começam em páginas ímpar (insere página vazia caso preciso)
+	openany,
+	%twoside,			% para impressão em verso e anverso. Oposto a oneside
+	oneside,
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de sub subseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Seleção de códigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificação do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Identa o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{colortbl}
+\usepackage{subfiles}
+
+% ---
+
+% ---
+% Pacotes adicionais, usados no anexo do modelo de folha de identificação
+% ---
+\usepackage{multicol}
+\usepackage{multirow}
+% ---
+	
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bib
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+
+%\centering \tab{\fontsize{14}{14}\textsf{ Universidade Federal do Maranhão - UFMA}}
+%\\
+%\\
+%\centering \centering {\textsf{\textmd Ciência da Computação}}
+%\\
+\titulo{Análise de predisposição de consumidores a Ações Judiciais }
+\autor{Domingos Alves Dias Júnior}
+\orientador{Prof. Dr. Geraldo Braz Júnior}
+\local{São Luís - MA}
+\data{Julho - 2019}
+\instituicao{
+Curso de Ciência da Computação 
+\par 
+UFMA
+}
+
+\tipotrabalho{Monografia I}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Projeto de Monografia apresentada ao curso de Ciência da Computação da Universidade Federal do Maranhão, para aprovação no componente curricular Monografia I. }
+% ---
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+%\preambulo{Modelo canônico de Relatório Técnico e/ou Científico em conformidade
+%com as normas ABNT apresentado à comunidade de usuários \LaTeX.}
+% ---
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{relatório técnico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      	% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+
+% ----
+% Início do documento
+% ----
+
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto
+
+\begin{folhadeaprovacao}
+
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+        
+   Projeto de Monografia Aprovado. Nota \_\_\_ (\_\_\_) \par \imprimirlocal, 02 de Julho de 2019:
+
+   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+      
+   \begin{center}
+    \vspace*{0.5cm}
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+  
+\end{folhadeaprovacao}
+
+% ---
+% RESUMO
+% ---
+
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+
+\begin{resumo}
+
+Aqui terá um resumo
+
+ \noindent
+\textbf{Palavras-chaves}: ação judicial; setor elétrico; perfil do cliente; mineração de dados; séries temporais.
+
+\end{resumo}
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+\textual
+\include{abntex2-modelo-include-comandos} 
+% ------------ Inserção de alguns comandos -----------------
+
+%TODO: 
+%0 - Resumo
+%1 - Introdução                                             
+    %1.1 - Justificativa                                    
+    %1.2 - Objetivos                                        
+    %1.3 - Objetivos Específicos
+%2 - Trabalhos relacionados
+%3 - Metodologia                                                
+%4 - Resultados Esperados                                   
+%5 - Cronograma 
+
+\subfile{Sections/introducao.tex} 
+\subfile{Sections/trabalhos_relacionados.tex} 
+\subfile{Sections/metodologia.tex} 
+\subfile{Sections/resultados_esperados.tex} 
+\subfile{Sections/cronograma.tex} 
+
+\phantompart
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{main.bib}
+\end{document}
